@@ -10,8 +10,9 @@ app.use(express.json());
 app.use(cors());
 
 const PORT = process.env.PORT || 3000;
-const MONGO_URI = 'mongodb+srv://sisindri:9988@flash2martcluster.dqcaeea.mongodb.net/?appName=flash2martCluster';
-// MongoDB Connection (అప్‌డేట్ చేసిన కోడ్)
+const MONGO_URI = process.env.MONGO_URI || 'mongodb+srv://sisindri:9988@flash2martcluster.dqcaeea.mongodb.net/?appName=flash2martCluster';
+
+// MongoDB Connection
 mongoose.connect(MONGO_URI)
 .then(() => console.log('✅ MongoDB Connected Successfully'))
 .catch((err) => console.error('❌ MongoDB Connection Error:', err));
@@ -26,7 +27,6 @@ app.get('/', (req, res) => {
 });
 
 // Server Listen
-const PORT = process.env.PORT || 3000;
 app.listen(PORT, '0.0.0.0', () => {
   console.log(`🚀 Server is running on port ${PORT}`);
 });
