@@ -10,16 +10,16 @@ app.use(express.json());
 app.use(cors());
 
 const PORT = process.env.PORT || 3000;
-const MONGO_URI = process.env.MONGO_URI || 'mongodb+srv://sisindri:9988@flash2martcluster.dqcaeea.mongodb.net/?appName=flash2martCluster';
+const MONGO_URI = process.env.MONGO_URI;
 
 // MongoDB Connection
 mongoose.connect(MONGO_URI)
-.then(() => console.log('✅ MongoDB Connected Successfully'))
-.catch((err) => console.error('❌ MongoDB Connection Error pls clear:', err));
+  .then(() => console.log('✅ MongoDB Connected Successfully'))
+  .catch((err) => console.error('❌ MongoDB Connection Error:', err));
 
 // Routes
-const deliveryRoutes = require('./routes/deliveryRoutes');
-app.use('/api/delivery', deliveryRoutes);
+const merchantRoutes = require('./routes/merchantRoutes');
+app.use('/api/merchant', merchantRoutes);
 
 // Test Route
 app.get('/', (req, res) => {
