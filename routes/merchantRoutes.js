@@ -23,13 +23,17 @@ router.post('/register', async (req, res) => {
       });
     }
 
+    // పాస్‌వర్డ్‌ని ఎన్‌క్రిప్ట్ (Hash) చేయడం
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(password, salt);
+
     const newMerchant = new Merchant({
       storeName,
       ownerName,
       phone,
       category,
       location,
-      password
+      password: hashedPassword
     });
 
     await newMerchant.save();
