@@ -10,7 +10,7 @@ app.use(express.json());
 app.use(cors());
 
 const PORT = process.env.PORT || 3000;
-const MONGO_URI = process.env.MONGO_URI;
+const MONGO_URI ="mongodb+srv://sisindri:9988@flash2martcluster.dqcaeea.mongodb.net/?appName=flash2martCluster";
 
 // MongoDB Connection
 mongoose.connect(MONGO_URI)
