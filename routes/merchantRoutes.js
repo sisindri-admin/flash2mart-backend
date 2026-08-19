@@ -23,17 +23,14 @@ router.post('/register', async (req, res) => {
       });
     }
 
-    // పాస్‌వర్డ్‌ని ఎన్‌క్రిప్ట్ (Hash) చేయడం
-    const salt = await bcrypt.genSalt(10);
-    const hashedPassword = await bcrypt.hash(password, salt);
-
+    // ఇక్కడ bcrypt హ్యాషింగ్ తీసేయబడింది, kyunki ఇది 'Merchant.js' స్కీమాలోనే ఆటోమేటిక్‌గా హ్యాష్ అవుతుంది.
     const newMerchant = new Merchant({
       storeName,
       ownerName,
       phone,
       category,
       location,
-      password: hashedPassword
+      password // నేరుగా పాస్‌వర్డ్ పంపబడుతోంది
     });
 
     await newMerchant.save();
